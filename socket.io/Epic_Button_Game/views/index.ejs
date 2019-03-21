@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- configuring socket connection on the client side -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            const socket = io.connect();
+
+            $("#epic_btn").click(function(){
+                socket.emit("buttonClick");
+            });
+            socket.on("updateNumber", function(number){
+                $("#number").text(number);
+            });
+            $("#reset").click(function(){
+                socket.emit("reset");
+            });
+        });
+    </script>
+    <title>Epic Button Game</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Epic Button Game</h1>
+        <h3>Button has been clicked <span id="number">0</span> time(s)</h3>
+        <h4>Push the button to upate the count!</h4>
+        <button class=" btn btn-primary" id="epic_btn">Push the epic button!</button>
+        <button class=" btn btn-warning pull-right" id="reset">Reset</button>
+    </div>
+</body>
+</html>

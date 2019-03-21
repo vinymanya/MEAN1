@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Players</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Go Back Home</a>
+      <a href="/players/new">Add New Player</a>
+    </nav>
+    <hr />
+    <h3>List of Players</h3>
+    <table>
+         <thead>
+              <tr>
+                   <th>ID</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Team Name</th>
+                   <th>Actions</th>
+              </tr>
+         </thead>
+         <tbody>
+              <% for(const player of players) { %>
+                    <tr>
+                         <td><%= player._id %></td>
+                         <td><%= player.first_name %></td>
+                         <td><%= player.last_name %></td>
+                         <td><%= player.team.name %></td>
+                         <td>some actions will go here</td>
+                    </tr>
+               <%}%>
+         </tbody>
+    </table>
+  </body>
+</html>

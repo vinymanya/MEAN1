@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>New Author</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/authors">Authors</a>
+      <a href="/books">Books</a>
+    </nav>
+    <fieldset>
+      <legend>New Author</legend>
+      <form action="/authors" method="post">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" />
+        </div>
+        <div>
+          <label for="age">Age</label>
+          <input type="number" name="age" />
+        </div>
+        <div>
+          <label for="isAlive">is Alive ?</label>
+          <input type="radio" name="isAlive" value="true" />Yes
+          <input type="radio" name="isAlive" value="false" />No
+        </div>
+        <button>Submit</button>
+      </form>
+    </fieldset>
+  </body>
+</html>

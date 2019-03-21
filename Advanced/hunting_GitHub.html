@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script>
+      $(document).ready(function() {});
+    </script>
+    <title>Hunting GitHub Assignment</title>
+  </head>
+  <body>
+    <button>Click here!</button>
+    <div id="container"></div>
+    <!-- jquery version 2.2.4-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+      $("button").click(function() {
+        //as soon as the Ajax request returns, displayName function is invoked and passed data
+        $.get("https://api.github.com/users/vinymanya", displayName);
+      });
+
+      function displayName(data) {
+        if (data.login) {
+          $("div#container").append("<h2>" + data.login + "</h2>");
+          $("div#container").append("<p>" + data.id + "</p>");
+          $("div#container").append("<p>" + data.avatar_url + "</p>");
+          $("div#container").append("<p>" + data.bio + "</p>");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animal</title>
+</head>
+<body>
+    <h1>Show Animal</h1>
+    <div>
+        <p>Id: <%= animal.id %></p>
+        <p>Name: <%= animal.name %></p>
+        <p>Species: <%= animal.species %></p>
+        <p>Number of Legs: <%= animal.numberOfLegs %></p>
+        <p>Eats_People: <%= animal.eatsPeople %></p>
+    </div>
+    <a href="/animals/<%= animal.id%>/edit"><button>Edit Animal</button></a>
+</body>
+</html>

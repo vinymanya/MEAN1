@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Animal</title>
+</head>
+<body>
+    <h1>Edit # <%=animal.name %></h1>
+    <form action="/animals/<%=animal.id%>" method="post">
+        <label for="name">Name of Animal: </label>
+        <input type="text" name="name" id="name" value="<%= animal.name %>">
+        <label for="legs">Number of Legs: </label>
+        <input type="number" name="num_legs" id="legs" value="<%= animal.numberOfLegs %>">
+        <label for="species">Species:</label>
+        <input type="text" name="species" id="species" value="<%= animal.species %>">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

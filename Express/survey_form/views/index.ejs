@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="#" />
+    <title>Survey Form</title>
+  </head>
+  <body>
+    <form action="/result" method="post">
+      <fieldset>
+        <legend>Survey Form</legend>
+        <div>
+          <label for="name">Your Name:</label>
+          <input type="text" name="yourname" id="name" />
+        </div>
+        <div>
+          <label for="dojo">Dojo Location</label>
+          <select name="dojolocation" id="dojo">
+            <option value="">Select Location</option>
+            <option>Mountain View</option>
+            <option>Seattle</option>
+            <option>Dallas</option>
+            <option>online</option>
+          </select>
+        </div>
+        <div>
+          <label for="fav_lang">Favorite Language:</label>
+          <select name="fav_language" id="fav_lang">
+            <option>JavaScript</option>
+            <option>Python</option>
+            <option>Ruby</option>
+            <option>Java</option>
+            <option>php</option>
+          </select>
+        </div>
+        <br />
+        <textarea name="comment" id="cmt" cols="30" rows="10"></textarea>
+        <br /><br />
+        <button>Submit</button>
+      </fieldset>
+    </form>
+  </body>
+</html>

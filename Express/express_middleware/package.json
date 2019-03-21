@@ -1,0 +1,22 @@
+{
+  "name": "express_middleware",
+  "version": "1.0.0",
+  "description": "\"Understanding how creating custom middleware in express.\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "server"
+  ],
+  "author": "Viny",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "colors": "^1.3.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}

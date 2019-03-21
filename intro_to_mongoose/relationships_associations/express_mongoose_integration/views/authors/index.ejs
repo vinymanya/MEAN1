@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Authors</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/books">Books</a>
+      <a href="/authors/new">Add Author</a>
+    </nav>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>is Alive</th>
+            <th>Books</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const author of authors){ %>
+          <tr>
+            <td><%= author.name %></td>
+            <td><%= author.age %></td>
+            <td><%= author.isAlive %></td>
+            <td>
+              <!-- loop through the author's books -->
+              <ul>
+                <% for(const book of author.books) { %>
+                <li><%= book.title %></li>
+                <%}%>
+              </ul>
+            </td>
+            <td>some actions</td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Players</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Go Back Home</a>
+      <a href="/teams/new">Add New Team</a>
+    </nav>
+    <hr />
+    <h3>List of Teams</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Team Name</th>
+          <th>Players</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(const team of teams) { %>
+        <tr>
+          <td><%= team._id %></td>
+          <td><%= team.name %></td>
+          <td>
+            <!-- loop through a list of players per team -->
+            <ul>
+              <% for(const player of team.roster) { %>
+              <li><%= player.first_name %></li>
+              <%}%>
+            </ul>
+          </td>
+          <td>Some actions will go here</td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </body>
+</html>

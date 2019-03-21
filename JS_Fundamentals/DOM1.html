@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM I</title>
+</head>
+<body>
+    <h1>Students</h1>
+
+    <ul id="main">
+        <!--append new element dynamically with JS -->
+
+    </ul>
+    <div id="target">
+
+    </div>
+    <script>
+        function appendList(array, id){
+            //code goes here
+           for (let i = 0; i < array.length; i++){
+               let new_li = document.createElement("li");
+               new_li.innerHTML = array[i];
+               document.getElementById(id).appendChild(new_li);
+           }
+        };
+        function superAppend(array, element,id){
+            for(let i = 0; i < array.length; i++){
+                let elem = document.createElement(element);
+                elem.innerHTML = array[i];
+                document.getElementById(id).appendChild(elem);
+            }
+        }
+
+        let students = ["Jeff", "Jenny", "Joslyn", "Joe", "Jane", "Django"];
+        let target_id = "main";
+        appendList(students, target_id);
+        superAppend(students, "h1", "target");
+    </script>
+    
+</body>
+</html>

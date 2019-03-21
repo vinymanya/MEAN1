@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <!--configure socket.io for the client connection -->
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body{
+            margin-top: 30px;
+        }
+        #messageArea{
+            display: none;
+        }
+    </style>
+    <title>Chatroom</title>
+</head>
+<body>
+    <div class="container">
+        <!-- handling functionality for first time users-->
+        <div id="userFormArea" class="row">
+            <div class="col-md-12">
+                <form action="" id="userForm"> <!-- A form for first time users -->
+                    <div class="form-group">
+                        <label for="username"> Enter Username:</label>
+                        <input type="text" id="username" class="form-control">
+                        <br>
+                        <input type="submit" value="Login" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="messageArea" class="row">
+            <!-- container for the sidebar-->
+            <div class="col-md-4">
+                <div class="well">
+                    <h3>Online users</h3>
+                    <ul class="list-group" id="users">
+                        <!--placeholder to display all connected users -->
+                    </ul>
+                </div>
+            </div>
+            <!--chat area -->
+            <h2>Conversation Board:</h2>
+            <div class="col-md-8">
+                <div class="chat" id="chat">
+                    <!-- placeholder to display chat messages -->
+                </div>
+                <!-- form with input field for the chat -->
+                <form action="" id="messageForm">
+                    <div class="form-group">
+                        <label for="message"> Enter Message:</label>
+                        <textarea id="message" class="form-control"></textarea>
+                        <br>
+                        <input type="submit" value="Send Message!" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            //this will trigger the connect with the server...
+            const socket = io.connect();
+            //create variables to hold onto data
+            let messageForm = $("#messageForm");
+                message = $("#message");
+                chat = $("#chat");
+                messageArea = $("#messageArea");
+                userFormArea = $("#userFormArea");
+                userForm = $("#userForm");
+                users = $("#users");
+                username = $("#username");
+            //create an event when messageForm is submitted:
+            messageForm.submit(function(e){
+                e.preventDefault();
+                //capture and send the message to the server
+                socket.emit("send_message", message.val());
+                message.val("");
+            });
+            socket.on("new_message", (data)=>{
+                chat.append("<div class='well'> <strong>"+ data.user +"</strong><br>"+ data.msg +"</div>")
+            });
+            //handling submittion of the userform
+            userForm.submit(function(e){
+                e.preventDefault();
+                //capture and send the username of the new user to the server
+                socket.emit("new_user", username.val(), (data)=>{
+                    //check if we have data, then hide userformArea
+                    //then show the messageForm
+                    if(data){
+                        userFormArea.hide();
+                        messageArea.show();
+                    }
+                });
+                username.val("");
+            });
+            //listen for get_users
+            socket.on("get_users", (data)=>{
+                let html = "";
+                //loop through user array from the server
+                for(let i = 0; i < data.length; i++){
+                    html += "<li class='list-group-item'>"+ data[i] +"</li>"
+                }
+                users.html(html);
+            });
+        });
+    </script>
+</body>
+</html>

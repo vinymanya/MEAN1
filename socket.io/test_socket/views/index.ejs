@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" href="stylesheet/style.css"> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- this link returns a new io object -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script>
+      $(document).ready(function() {
+        // with this io object, we can invoke the .connect() method
+        //which triggers the connection with our server.
+        const socket = io.connect();
+        //we will write all the socket stuff after the above line!
+        $("button").click(function() {
+          socket.emit("button_clicked", {
+            reason: "because I want to learn about sockets!"
+          });
+        });
+        socket.on("server_response", function(data) {
+          console.log(`The server says: ${data.response}`);
+          $("div#container").append(`<p>The server says: ${data.response}</p>`);
+        });
+      });
+    </script>
+    <title>Socket.io</title>
+  </head>
+  <body>
+    <button>I am a button</button>
+    <div id="container"></div>
+    <!-- web page goes here -->
+  </body>
+</html>
